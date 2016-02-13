@@ -140,7 +140,7 @@ public class Map {
 			&& ecranHeight<(((this.nbTuileY+0.5)*this.tuileHeight*scale/2)-16))
 		{
 			float oldCarteWidth=(float) (this.nbTuileX*this.tuileWidth*scale);
-			float oldCarteHeight=(float) (this.nbTuileX*this.tuileHeight*0.5*scale);
+			float oldCarteHeight=(float) (this.nbTuileY*this.tuileHeight*0.5*scale);
 			float newCarteWidth=(float) (oldCarteWidth*0.99);
 			float newCarteHeight=(float) (oldCarteHeight*0.99);
 			float difCarteWidth=oldCarteWidth-newCarteWidth;

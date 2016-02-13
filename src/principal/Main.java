@@ -3,6 +3,7 @@ package principal;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -46,6 +47,8 @@ public class Main extends BasicGame {
     	g.translate(this.jeu.getMap().getXCamera(),this.jeu.getMap().getYCamera());
     	g.scale(this.jeu.getMap().getScale(),this.jeu.getMap().getScale());
     	this.jeu.getMap().render(0, 0);
+    	g.scale(1, 1);
+    	this.jeu.getHud().render(g, (int)(this.jeu.getMap().getXCamera()*(-1)), (int)(this.jeu.getMap().getYCamera()*(-1)));
     }
 
     @Override
@@ -123,7 +126,7 @@ public class Main extends BasicGame {
     
     @Override
     public void mousePressed(int button, int x, int y) {
-    	// System.out.println(button+" ("+x+";"+y+")");
+    	//System.out.println(button+" ("+x+";"+y+") ("+(this.jeu.getMap().getXCamera()-x)+";"+(this.jeu.getMap().getYCamera()-y)+")");
     }
     
     @Override
