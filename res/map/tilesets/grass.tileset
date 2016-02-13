@@ -1,0 +1,27 @@
+tileres=64x42
+file=grass_and_water.png
+[tileset]
+tuile: sol
+tuile: sol
+tuile: sol
+tuile: sol
+tuile: water
+tuile: water
+tuile: water
+tuile: water
+tuile: water
+tuile: water
+tuile: water
+tuile: water
+tuile: water
+tuile: water
+tuile: water
+tuile: water
+tuile: water
+tuile: water
+tuile: water
+tuile: water
+tuile: water
+tuile: water
+tuile: water
+tuile: water
