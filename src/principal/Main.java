@@ -27,6 +27,7 @@ public class Main extends BasicGame {
     public void init(GameContainer container) throws SlickException {
     	this.container = container;
 		container.setShowFPS(false);
+		container.setFullscreen(true);
 		this.timepast=0;
 		this.jeu = new Jeu();
 		this.touches=new Touche[8];
@@ -122,11 +123,14 @@ public class Main extends BasicGame {
     	this.mouseX=newx;
     	this.mouseY=newy;
     	
+    	this.jeu.getHud().mouseMoved(oldx, oldy, newx, newy);
+    	
     }
     
     @Override
     public void mousePressed(int button, int x, int y) {
     	//System.out.println(button+" ("+x+";"+y+") ("+(this.jeu.getMap().getXCamera()-x)+";"+(this.jeu.getMap().getYCamera()-y)+")");
+    	this.jeu.getHud().mousePressed(button, x, y);
     }
     
     @Override

@@ -1,17 +1,29 @@
 package principal;
 
+import java.awt.Button;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.Shape;
+import java.awt.geom.Area;
+import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.io.InputStream;
+
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonAreaLayout;
 
 import org.newdawn.slick.Color;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.OutlineEffect;
+import org.newdawn.slick.geom.Point;
+import org.newdawn.slick.gui.MouseOverArea;
 import org.newdawn.slick.util.ResourceLoader;
+
+import autres.ButtonArea;
 
 public class Hud {
 	private int nbOr;
@@ -24,6 +36,10 @@ public class Hud {
 	private int stockHabitant;
 	private TrueTypeFont textResource;
 	private TrueTypeFont textResourceOmbre;
+	private TrueTypeFont textBuildButton;
+	private TrueTypeFont textBuildButtonOmbre;
+	private Image imgBuildButton;
+	private ButtonArea buildButton;
 	
 	public Hud() {
 		this.nbOr = 0;
@@ -39,12 +55,24 @@ public class Hud {
 			Font f = Font.createFont(Font.TRUETYPE_FONT, inputStream);
 	        f = f.deriveFont(14f); // set font size
 	        this.textResource = new TrueTypeFont(f, true);
-	        f = f.deriveFont(15.49f); // set font size
+	        f = f.deriveFont(15f); // set font size
 	        this.textResourceOmbre = new TrueTypeFont(f, true);
+	        f = f.deriveFont(16f); // set font size
+	        this.textBuildButton = new TrueTypeFont(f, true);
+	        f = f.deriveFont(17f); // set font size
+	        this.textBuildButtonOmbre = new TrueTypeFont(f, true);
 		} catch (FontFormatException e) {
 			// TODO Bloc catch généré automatiquement
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Bloc catch généré automatiquement
+			e.printStackTrace();
+		}
+		
+		try {
+			this.imgBuildButton = new Image("res/img/build.png");
+			this.buildButton = new ButtonArea(910, 650, 100, 100);
+		} catch (SlickException e) {
 			// TODO Bloc catch généré automatiquement
 			e.printStackTrace();
 		}
@@ -140,10 +168,44 @@ public class Hud {
 		g.drawString("1 753 456", x+200-(g.getFont().getWidth("1 753 456")+10), y);
 	}
 	
+	public void drawBuildButton(Graphics g, int x, int y){
+
+		g.setColor(new Color(163,165,149));
+		g.fillRoundRect(x, y, 100, 100, 5);
+
+		g.setColor(new Color(139,142,121));
+		g.setLineWidth(g.getLineWidth()*2);
+		g.drawRoundRect(x, y, 100, 100, 5);
+		g.setLineWidth(g.getLineWidth()/2);
+		
+		g.setFont(this.textBuildButtonOmbre);
+		g.setColor(new Color(0,0,0));
+		g.drawString("Achat", x+(105/2)-(g.getFont().getWidth("Achat")/2),y+100-(g.getFont().getHeight("Achat")+5));
+		g.setFont(this.textBuildButton);
+		g.setColor(new Color(255,255,255));
+		g.drawString("Achat", x+(105/2)-(g.getFont().getWidth("Achat")/2),y+100-(g.getFont().getHeight("Achat")+5));
+		
+		this.imgBuildButton.draw(x+(105/2)-30,y+5,60,60);
+	}
+	
 	public void render(Graphics g, int x, int y){
 		this.drawOr(g,x+30,y+15);
 		this.drawBois(g,x+260,y+15);
 		this.drawPierre(g,x+490,y+15);
 		this.drawHabitant(g,x+720,y+15);
+		
+		this.drawBuildButton(g, x+910, y+650);
 	}
+	
+	public void mousePressed(int button, int x, int y) {
+    	if(this.buildButton.contain(x,y) && button==0){
+    		System.out.println("BOUTTON");
+    	}
+    }
+    public void mouseMoved(int oldx, int oldy, int newx, int newy) {
+    	if(this.buildButton.contain(newx,newy))
+    		this.buildButton.setHover(true);
+    	else
+    		this.buildButton.setHover(false);
+    }
 }
