@@ -1,15 +1,5 @@
 package principal;
 
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.io.IOException;
-import java.io.InputStream;
-
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.TrueTypeFont;
-import org.newdawn.slick.UnicodeFont;
-import org.newdawn.slick.util.ResourceLoader;
-
 import configuration.Config;
 import entities.Map;
 
@@ -27,12 +17,12 @@ public class Jeu {
 	public Config getConfig(){
 		return this.config;
 	}
-
 	public Map getMap(){
 		return this.m;
 	}
 	public Hud getHud(){
 		return this.hud;
 	}
+	
 	
 }

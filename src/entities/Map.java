@@ -6,10 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import tuiles.Sol;
 import tuiles.TilesProperty;
 import tuiles.Tuile;
-import tuiles.Water;
 
 public class Map {
 	private Tuile[][] tuiles;

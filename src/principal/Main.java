@@ -3,7 +3,6 @@ package principal;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -48,7 +47,7 @@ public class Main extends BasicGame {
     	g.translate(this.jeu.getMap().getXCamera(),this.jeu.getMap().getYCamera());
     	g.scale(this.jeu.getMap().getScale(),this.jeu.getMap().getScale());
     	this.jeu.getMap().render(0, 0);
-    	g.scale(1, 1);
+    	g.scale(1/this.jeu.getMap().getScale(),1/this.jeu.getMap().getScale());
     	this.jeu.getHud().render(g, (int)(this.jeu.getMap().getXCamera()*(-1)), (int)(this.jeu.getMap().getYCamera()*(-1)));
     }
 

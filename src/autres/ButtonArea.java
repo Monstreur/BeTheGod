@@ -38,6 +38,9 @@ public class ButtonArea {
 		return (x2>=x && x2<=(x+width) && y2>=y && y2<=(y+height));
 	}
 	
-	
+	@Override
+	public String toString(){
+		return "("+x+";"+y+") "+width+"x"+height;
+	}
 	
 }
