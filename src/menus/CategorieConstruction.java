@@ -3,10 +3,13 @@ package menus;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import autres.ButtonArea;
+import batiments.Batiment;
 
 public class CategorieConstruction {
 	private Image img;
@@ -41,25 +44,47 @@ public class CategorieConstruction {
 	public void setButtons(int x, int y){
 		int cpt=0;
 		for (BatimentConstruction bc : batiments) {
-			bc.setButton(x+50+(cpt*130),y+50,100,100);
+			bc.setButton(x+50+(cpt*120),y+50,100,100);
 			cpt++;
 		}
 	}
 	
-	public void draw(int x, int y){
+	public void draw(Graphics g, int x, int y){
 		if(this.button.isHover())
 			this.backgroundHover.draw(x, y, 100, 100);
 		else
 			this.background.draw(x, y, 100, 100);
 		this.img.draw(x+20, y+5, 60, 60);
+		
+		g.setColor(new Color(255,255,255));
+		g.drawString(this.name, x+(100/2)-(g.getFont().getWidth(this.name)/2),y+100-(g.getFont().getHeight(this.name)+5));
 	}
 	
-	public void render(int x, int y){
+	public void render(Graphics g, int x, int y){
 		int cpt=0;
 		for (BatimentConstruction bc : batiments) {
-			bc.draw(x+50+(cpt*130),y+50);
+			bc.draw(g,x+50+(cpt*120),y+50);
 			cpt++;
 		}
 	}
+	
+	public Batiment mousePressed(int button, int x, int y) {
+		for (BatimentConstruction bc : batiments) {
+			if(bc.getButton().contain(x,y) && button==0){
+				bc.getButton().setHover(false);
+				return bc.getBatiment();
+			}
+		}
+		return null;
+    }
+
+    public void mouseMoved(int oldx, int oldy, int newx, int newy) {
+		for (BatimentConstruction bc : batiments) {
+        	if(bc.getButton().contain(newx,newy))
+        		bc.getButton().setHover(true);
+        	else
+        		bc.getButton().setHover(false);
+		}
+    }
 
 }

@@ -44,11 +44,8 @@ public class Main extends BasicGame {
 
     @Override
     public void render(GameContainer container, Graphics g) throws SlickException {
-    	g.translate(this.jeu.getMap().getXCamera(),this.jeu.getMap().getYCamera());
-    	g.scale(this.jeu.getMap().getScale(),this.jeu.getMap().getScale());
-    	this.jeu.getMap().render(0, 0);
-    	g.scale(1/this.jeu.getMap().getScale(),1/this.jeu.getMap().getScale());
-    	this.jeu.getHud().render(g, (int)(this.jeu.getMap().getXCamera()*(-1)), (int)(this.jeu.getMap().getYCamera()*(-1)));
+    	
+    	this.jeu.render(g,this.mouseX,this.mouseY);
     }
 
     @Override
@@ -62,7 +59,7 @@ public class Main extends BasicGame {
     	if (this.touches[Touche.LEFT].is_appuie() || this.touches[Touche.MOUSELEFT].is_appuie())
     		this.jeu.getMap().moveCamera(3,this.container.getWidth(),this.container.getHeight());
     	
-    	
+    	this.jeu.update(container,delta);
     }
     
     public void keyPressed(int key, char c){
